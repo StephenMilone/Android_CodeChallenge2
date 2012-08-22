@@ -1,0 +1,73 @@
+Triangle Challenge
+
+This project was originally a coding challenge to I saw on a job posting. Seemed like a good excerise in not only coding but logic.  I decided to share my solution to help others understand the problem, which I later found out is part of the Project Euler (http://en.wikipedia.org/wiki/Project_Euler), it's projects #18 and 67.
+
+The problem, as described on the job site:
+
+--------------------------
+Triangle
+By starting at the top of the triangle and moving to adjacent numbers on the row below, the maximum total from top to bottom is 27.
+
+        5
+      9  6
+    4   6  8
+  0   7  1   5
+
+I.e. 5 + 9 + 6 + 7 = 27.
+
+Write a program in a language of your choice to find the maximum total from top to bottom in triangle.txt, a text file containing a triangle with 100 rows. 
+--------------------------
+
+It tries to trick you with it's wording and example.  It says by starting at the top and working down, for this example shown it works if you go down and pick the highest number.
+
+5 - (9>6) - 9 - (4<6) - 6 - (7>1) - 7
+
+But look at this example triangle if you go from top to bottom.
+
+        1
+      1  0
+    1   0  9
+  1   0  0   0
+
+from top to bottom you always end up comparing 1 and 0 and picking 1, which leaves the 9 untouched and gives you 4 as your answer, when the answer is really 10.
+
+The way I used in my code and is to start from the bottom and go up!  The short summary is that it processes every number in the bottom row of the trangle with the row above it and each number is matched with it's highest adjacent number from above.  Then replace the bottom 2 rows with this new row of sums and repeat until you get to the top.  Here's the 2 examples step by step.
+
+        5
+      9  6
+    4   6  8
+  0   7  1   5
+
+        5
+      9  6
+    11 13  13 (4+7, 6+7, 8+5)
+
+        5
+     22  19 (9+13, 6+13)
+
+        27 (5+22)
+
+        1
+      1  0
+    1   0  9
+  1   0  0   0
+
+        1
+       1  0
+      2 1  9 (1+1, 0+1, 9+0)
+
+        1
+       3  9 (1+2, 0+9)
+
+        10 (1+9)
+
+
+I hope the format looks like triangles on your screen, I'll provide graphics if it doesn't.
+
+Much more detailed info as comments throughout code.
+
+Any questions / comments please don't hesitate to ask!
+
+Thanks,
+Stephen A. Milone
+android@stephenmilone.com
